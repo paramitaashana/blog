@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Daily Moments</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Moments - Copy to Clipboard</title>
 
 <style>
 body {
@@ -32,6 +33,7 @@ h1 {
   cursor: pointer;
   position: relative;
   transition: transform 0.2s;
+  break-inside: avoid;
 }
 
 .card:hover {
@@ -52,54 +54,186 @@ h1 {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background: black;
+  background: #4CAF50;
   color: white;
-  padding: 5px 10px;
+  padding: 5px 12px;
   border-radius: 6px;
   font-size: 12px;
   opacity: 0;
-  transition: 0.3s;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.copy-hint {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover .copy-hint {
+  opacity: 1;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🌤 A Day in My Life</h1>
+<h1>🌤 A Day in My Life <span style="font-size: 14px;">(Click any image to copy its code)</span></h1>
 
 <div class="grid">
 
-  <div class="card" onclick="copyText(this, 'Morning coffee hits different when you have goals.')">
-    <img src="https://via.placeholder.com/300x400">
+  <!-- Card 1 - Morning Coffee -->
+  <div class="card" data-code='<div class="moment"><img src="https://i.pinimg.com/736x/d1/11/92/d1119205db29a11a0aabc3ce56e39b85.jpg"><p>☕ Quiet morning with coffee</p></div>'>
+    <div class="copy-hint">📋 Click to copy code</div>
+    <img src="https://i.pinimg.com/736x/d1/11/92/d1119205db29a11a0aabc3ce56e39b85.jpg" alt="Morning coffee">
     <div class="caption">☕ Quiet morning with coffee</div>
-    <div class="copied">Saved ✨</div>
+    <div class="copied">Copied! ✨</div>
   </div>
 
-  <div class="card" onclick="copyText(this, 'Small progress is still progress.')">
-    <img src="https://via.placeholder.com/300x350">
+  <!-- Card 2 - Studying -->
+  <div class="card" data-code='<div class="moment"><img src="https://i.pinimg.com/736x/c3/d4/a2/c3d4a24921d72a40da471bdc8ca8be8f.jpg"><p>💻 Studying and coding</p></div>'>
+    <div class="copy-hint">📋 Click to copy code</div>
+    <img src="https://i.pinimg.com/736x/c3/d4/a2/c3d4a24921d72a40da471bdc8ca8be8f.jpg" alt="Studying">
     <div class="caption">💻 Studying and coding</div>
-    <div class="copied">Saved ✨</div>
+    <div class="copied">Copied! ✨</div>
   </div>
 
-  <div class="card" onclick="copyText(this, 'Even sunsets remind you to slow down.')">
-    <img src="https://via.placeholder.com/300x450">
+  <!-- Card 3 - Evening Walk -->
+  <div class="card" data-code='<div class="moment"><img src="https://i.pinimg.com/1200x/ff/eb/8e/ffeb8e922455835c06b8d1e4ce1310e8.jpg"><p>🌇 Evening walk</p></div>'>
+    <div class="copy-hint">📋 Click to copy code</div>
+    <img src="https://i.pinimg.com/1200x/ff/eb/8e/ffeb8e922455835c06b8d1e4ce1310e8.jpg" alt="Evening walk">
     <div class="caption">🌇 Evening walk</div>
-    <div class="copied">Saved ✨</div>
+    <div class="copied">Copied! ✨</div>
+  </div>
+
+  <!-- Card 4 - Add more as needed -->
+  <div class="card" data-code='<div class="moment"><img src="https://i.pinimg.com/736x/d1/11/92/d1119205db29a11a0aabc3ce56e39b85.jpg"><p>🌅 Beautiful sunset</p></div>'>
+    <div class="copy-hint">📋 Click to copy code</div>
+    <img src="https://i.pinimg.com/736x/d1/11/92/d1119205db29a11a0aabc3ce56e39b85.jpg" alt="Sunset">
+    <div class="caption">🌅 Beautiful sunset moment</div>
+    <div class="copied">Copied! ✨</div>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="card" data-code='<div class="moment"><img src="https://i.pinimg.com/736x/c3/d4/a2/c3d4a24921d72a40da471bdc8ca8be8f.jpg"><p>🎨 Creative workspace</p></div>'>
+    <div class="copy-hint">📋 Click to copy code</div>
+    <img src="https://i.pinimg.com/736x/c3/d4/a2/c3d4a24921d72a40da471bdc8ca8be8f.jpg" alt="Workspace">
+    <div class="caption">🎨 Creative workspace setup</div>
+    <div class="copied">Copied! ✨</div>
+  </div>
+
+  <!-- Card 6 -->
+  <div class="card" data-code='<div class="moment"><img src="https://i.pinimg.com/1200x/ff/eb/8e/ffeb8e922455835c06b8d1e4ce1310e8.jpg"><p>📚 Reading time</p></div>'>
+    <div class="copy-hint">📋 Click to copy code</div>
+    <img src="https://i.pinimg.com/1200x/ff/eb/8e/ffeb8e922455835c06b8d1e4ce1310e8.jpg" alt="Reading">
+    <div class="caption">📚 Peaceful reading time</div>
+    <div class="copied">Copied! ✨</div>
   </div>
 
 </div>
 
 <script>
-function copyText(card, text) {
-  navigator.clipboard.writeText(text);
-
-  let badge = card.querySelector('.copied');
-  badge.style.opacity = 1;
-
-  setTimeout(() => {
-    badge.style.opacity = 0;
-  }, 1200);
+// Modern clipboard copy function
+async function copyToClipboard(text, cardElement) {
+  try {
+    // Try using the modern clipboard API
+    await navigator.clipboard.writeText(text);
+    showCopySuccess(cardElement);
+  } catch (err) {
+    // Fallback for older browsers
+    fallbackCopyToClipboard(text, cardElement);
+  }
 }
+
+// Fallback method using textarea
+function fallbackCopyToClipboard(text, cardElement) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  
+  try {
+    document.execCommand('copy');
+    showCopySuccess(cardElement);
+  } catch (err) {
+    console.error('Copy failed:', err);
+    showCopyError(cardElement);
+  }
+  
+  document.body.removeChild(textarea);
+}
+
+// Show success animation
+function showCopySuccess(cardElement) {
+  const badge = cardElement.querySelector('.copied');
+  if (badge) {
+    badge.style.opacity = '1';
+    setTimeout(() => {
+      badge.style.opacity = '0';
+    }, 1500);
+  }
+}
+
+// Show error message
+function showCopyError(cardElement) {
+  const badge = cardElement.querySelector('.copied');
+  if (badge) {
+    badge.textContent = 'Failed! ❌';
+    badge.style.background = '#f44336';
+    badge.style.opacity = '1';
+    setTimeout(() => {
+      badge.style.opacity = '0';
+      setTimeout(() => {
+        badge.textContent = 'Copied! ✨';
+        badge.style.background = '#4CAF50';
+      }, 500);
+    }, 1500);
+  }
+}
+
+// Add click event listeners to all cards
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    // Don't trigger if clicking on the badge itself
+    if (e.target.classList && e.target.classList.contains('copied')) {
+      return;
+    }
+    
+    const codeToCopy = this.getAttribute('data-code');
+    if (codeToCopy) {
+      copyToClipboard(codeToCopy, this);
+    } else {
+      console.warn('No data-code attribute found on this card');
+      showCopyError(this);
+    }
+  });
+});
+
+// Optional: Add keyboard accessibility
+document.querySelectorAll('.card').forEach(card => {
+  card.setAttribute('tabindex', '0');
+  card.setAttribute('role', 'button');
+  card.setAttribute('aria-label', 'Click to copy image code to clipboard');
+  
+  card.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      this.click();
+    }
+  });
+});
+
+console.log('Ready! Click any card to copy its HTML code to clipboard.');
 </script>
 
 </body>
