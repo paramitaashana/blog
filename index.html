@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Daily Moments</title>
+
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  padding: 20px;
+  font-weight: 500;
+}
+
+.grid {
+  column-count: 3;
+  column-gap: 15px;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card img {
+  width: 100%;
+  display: block;
+}
+
+.caption {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.copied {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  opacity: 0;
+  transition: 0.3s;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌤 A Day in My Life</h1>
+
+<div class="grid">
+
+  <div class="card" onclick="copyText(this, 'Morning coffee hits different when you have goals.')">
+    <img src="https://via.placeholder.com/300x400">
+    <div class="caption">☕ Quiet morning with coffee</div>
+    <div class="copied">Saved ✨</div>
+  </div>
+
+  <div class="card" onclick="copyText(this, 'Small progress is still progress.')">
+    <img src="https://via.placeholder.com/300x350">
+    <div class="caption">💻 Studying and coding</div>
+    <div class="copied">Saved ✨</div>
+  </div>
+
+  <div class="card" onclick="copyText(this, 'Even sunsets remind you to slow down.')">
+    <img src="https://via.placeholder.com/300x450">
+    <div class="caption">🌇 Evening walk</div>
+    <div class="copied">Saved ✨</div>
+  </div>
+
+</div>
+
+<script>
+function copyText(card, text) {
+  navigator.clipboard.writeText(text);
+
+  let badge = card.querySelector('.copied');
+  badge.style.opacity = 1;
+
+  setTimeout(() => {
+    badge.style.opacity = 0;
+  }, 1200);
+}
+</script>
+
+</body>
+</html>
